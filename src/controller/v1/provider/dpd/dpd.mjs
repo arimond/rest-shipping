@@ -27,13 +27,15 @@ async function _sanitizeAddress(sender, recipient, addressSource) {
 
 async function sanitizeAddress(req, res, next) {
   //only return the sanitized address
+
   let response;
   let sender = req.body.sender;
   let recipient = req.body.recipient;
   let addressSource = req.body.addressSource;
 
   try {
-    response = _sanitizeAddress(sender, recipient, addressSource);
+
+    response = await _sanitizeAddress(sender, recipient, addressSource);
 
   } catch (e) {
     return next(new BadRequestError(e));
